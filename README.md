@@ -12,6 +12,13 @@
 - REST API endpoint
 - Analysis logging
 - Model training pipeline
+## Web Interface
+
+![Web Interface](screenshots_web_interface.png)
+
+## Example Analysis Result
+
+![Analysis Result](screenshots_analysis_result.png)S
 
 ## Project Structure
 
