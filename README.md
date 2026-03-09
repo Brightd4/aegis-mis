@@ -42,3 +42,15 @@ AEGIS-MIS
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+
+---
+
+## Documentation
+
+Additional project documentation:
+
+- **Project Summary:** [project_summary.md](project_summary.md)
+- **System Architecture:** [architecture.md](architecture.md)
+- **Evaluation Results:** [evaluation_results.md](evaluation_results.md)
+
+These documents describe the system design, experimental results, and overall project objectives for AEGIS-MIS.
