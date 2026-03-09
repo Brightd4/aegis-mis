@@ -1,0 +1,46 @@
+AEGIS-MIS SYSTEM ARCHITECTURE
+
+[ User / Analyst ]
+        |
+        v
+[ Flask Web Interface ]
+        |
+        +----------------------+
+        |                      |
+        v                      v
+[ Rule-Based Detector ]   [ ML Detector ]
+        |                      |
+        |                      |
+        +----------+-----------+
+                   |
+                   v
+        [ Hybrid Scoring Engine ]
+                   |
+                   v
+        [ Explainability Engine ]
+                   |
+                   +-------------------+
+                   |                   |
+                   v                   v
+        [ Web Report Output ]   [ REST API Response ]
+                   |
+                   v
+             [ Logging System ]
+
+--------------------------------------------
+
+Training Pipeline (offline)
+
+[ training_data.csv ]
+        |
+        v
+[ train_model.py ]
+        |
+        v
+[ TF-IDF + Logistic Regression ]
+        |
+        v
+[ misinformation_model.pkl ]
+        |
+        v
+[ ML Detector ]
