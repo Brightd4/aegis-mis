@@ -3,7 +3,7 @@ import re
 
 class MisinformationDetector:
     def __init__(self):
-        # Weighted trigger phrases (more realistic than +1 scoring)
+        # Weighted trigger phrases
         self.trigger_weights = {
             "hoax": 2,
             "fake": 1,
@@ -13,14 +13,19 @@ class MisinformationDetector:
             "they don't want you to know": 3
         }
 
-    def analyze(self, text: str):
+    def analyze(self, text: str) -> dict:
         score = 0
         found_triggers = []
-
         lower_text = text.lower()
 
         for phrase, weight in self.trigger_weights.items():
-            if re.search(re.escape(phrase), lower_text):
+            # If single word → match whole word only
+            if " " not in phrase:
+                pattern = r"\b" + re.escape(phrase) + r"\b"
+            else:
+                pattern = re.escape(phrase)
+
+            if re.search(pattern, lower_text):
                 score += weight
                 found_triggers.append(phrase)
 

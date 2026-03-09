@@ -1,19 +1,37 @@
 # =========================
-# Node / JavaScript
-# =========================
-node_modules/
-npm-debug.log*
-yarn-error.log*
-
-# =========================
 # Python
 # =========================
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+
+# Virtual environments
 .venv/
 venv/
+env/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+
+# =========================
+# Machine Learning Models
+# =========================
+models/*.pkl
+models/*.joblib
+
+# =========================
+# Logs
+# =========================
+analysis_log.txt
+*.log
+
+# =========================
+# Data files (optional)
+# =========================
+# Uncomment if datasets become large
+# data/*.csv
 
 # =========================
 # Environment variables
@@ -23,18 +41,24 @@ venv/
 .env.*.local
 
 # =========================
+# Node / JavaScript
+# =========================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# =========================
 # Docker
 # =========================
-*.log
 docker-data/
+
+# =========================
+# VS Code
+# =========================
+.vscode/
 
 # =========================
 # OS / Editor files
 # =========================
 .DS_Store
 Thumbs.db
-
-# =========================
-# VS Code
-# =========================
-.vscode/
