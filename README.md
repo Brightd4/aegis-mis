@@ -13,6 +13,18 @@
 - Analysis logging
 - Model training pipeline
 
+## Current Evaluation
+
+Using the current prototype dataset and a stratified train/test split, the baseline Logistic Regression + TF-IDF classifier achieved:
+
+- Accuracy: 1.000
+- Precision: 1.000
+- Recall: 1.000
+- F1 Score: 1.000
+
+### Important Note
+These results were obtained on a small synthetic prototype dataset and should be interpreted as an early validation signal rather than final real-world performance. Broader evaluation on larger and more diverse datasets is planned.
+
 ## Project Structure
 
 ```text
