@@ -1,8 +1,17 @@
 # AEGIS-MIS
 
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Framework](https://img.shields.io/badge/Framework-Flask-black)
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Logistic%20Regression-orange)
+![NLP](https://img.shields.io/badge/NLP-TF--IDF-green)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+![Status](https://img.shields.io/badge/Status-Prototype-yellow)
+
 **AEGIS-MIS (Automated Explainable Guard for Information Security – Misinformation Identification System)** is a hybrid AI-assisted misinformation detection platform designed to support information integrity, cybersecurity awareness, and public-interest defense.
 
-## Abstract
+---
+
+# Abstract
 
 AEGIS-MIS (Automated Explainable Guard for Information Security – Misinformation Identification System) is a hybrid misinformation detection prototype designed to identify potentially deceptive or manipulative textual content.
 
@@ -10,7 +19,9 @@ The system combines rule-based pattern detection with a machine learning classif
 
 To support transparency and interpretability, AEGIS-MIS includes an explainability module that highlights the triggers and model signals contributing to each decision. The system is deployed through a lightweight Flask web interface and REST API, enabling interactive analysis and integration with other security tools.
 
-## Features
+---
+
+# Features
 
 - Rule-based misinformation trigger detection
 - Machine learning NLP classifier
@@ -21,21 +32,30 @@ To support transparency and interpretability, AEGIS-MIS includes an explainabili
 - Analysis logging
 - Model training pipeline
 
-## Web Interface
+---
+
+# Web Interface
 
 ![Web Interface](screenshots/web_interface.png)
 
-## Example Analysis Result
+---
+
+# Example Analysis Result
 
 ![Analysis Result](screenshots/analysis_result.png)
 
-## Project Structure
+---
+
+# Project Structure
 
 ```text
 AEGIS-MIS
 ├── data/
 │   └── training_data.csv
 ├── models/
+├── screenshots/
+│   ├── web_interface.png
+│   └── analysis_result.png
 ├── src/
 │   ├── detector.py
 │   ├── explainer.py
@@ -48,7 +68,9 @@ AEGIS-MIS
 └── .gitignore
 ```
 
-## Installation
+---
+
+# Installation
 
 ```bash
 python -m venv .venv
@@ -56,13 +78,17 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-## Train the Model
+---
+
+# Train the Model
 
 ```bash
 python train_model.py
 ```
 
-## Run the Web App
+---
+
+# Run the Web App
 
 ```bash
 python app.py
@@ -70,15 +96,17 @@ python app.py
 
 Then open:
 
-```text
+```
 http://127.0.0.1:5000
 ```
 
-## API Usage
+---
+
+# API Usage
 
 Endpoint:
 
-```text
+```
 POST /api/analyze
 ```
 
@@ -92,7 +120,9 @@ Invoke-RestMethod `
 -Body '{"text":"This is a secret cure they do not want you to know."}'
 ```
 
-## Current Evaluation
+---
+
+# Current Evaluation
 
 Using the current prototype dataset and a stratified train/test split, the baseline Logistic Regression + TF-IDF classifier achieved:
 
@@ -105,21 +135,28 @@ Using the current prototype dataset and a stratified train/test split, the basel
 
 These results were obtained on a small synthetic prototype dataset and should be interpreted as an early validation signal rather than final real-world performance. Broader evaluation on larger and more diverse datasets is planned.
 
-## Documentation
+---
+
+# Documentation
 
 Additional project documentation:
 
 - **Project Summary:** [project_summary.md](project_summary.md)
 - **System Architecture:** [architecture.md](architecture.md)
 - **Evaluation Results:** [evaluation_results.md](evaluation_results.md)
+- **System Overview:** [system_overview.md](system_overview.md)
 
 These documents describe the system design, experimental results, and overall project objectives for AEGIS-MIS.
 
-## Purpose
+---
+
+# Purpose
 
 AEGIS-MIS is a hybrid misinformation detection and security defense prototype that combines transparent rule-based logic with machine learning-assisted text classification.
 
-## Future Work
+---
+
+# Future Work
 
 The current prototype demonstrates the feasibility of hybrid rule-based and machine learning approaches for misinformation detection. Future improvements may include:
 
@@ -131,6 +168,8 @@ The current prototype demonstrates the feasibility of hybrid rule-based and mach
 - Deploying the system as a scalable cloud service
 - Enhancing multilingual misinformation detection capabilities
 
-## Status
+---
+
+# Status
 
 Prototype under active development.
