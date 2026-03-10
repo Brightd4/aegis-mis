@@ -2,6 +2,14 @@
 
 **AEGIS-MIS (Automated Explainable Guard for Information Security – Misinformation Identification System)** is a hybrid AI-assisted misinformation detection platform designed to support information integrity, cybersecurity awareness, and public-interest defense.
 
+## Abstract
+
+AEGIS-MIS (Automated Explainable Guard for Information Security – Misinformation Identification System) is a hybrid misinformation detection prototype designed to identify potentially deceptive or manipulative textual content.
+
+The system combines rule-based pattern detection with a machine learning classifier based on TF-IDF feature extraction and logistic regression. These components are integrated through a hybrid scoring engine that produces a unified misinformation risk score.
+
+To support transparency and interpretability, AEGIS-MIS includes an explainability module that highlights the triggers and model signals contributing to each decision. The system is deployed through a lightweight Flask web interface and REST API, enabling interactive analysis and integration with other security tools.
+
 ## Features
 
 - Rule-based misinformation trigger detection
@@ -12,6 +20,7 @@
 - REST API endpoint
 - Analysis logging
 - Model training pipeline
+
 ## Web Interface
 
 ![Web Interface](screenshots/web_interface.png)
@@ -109,6 +118,18 @@ These documents describe the system design, experimental results, and overall pr
 ## Purpose
 
 AEGIS-MIS is a hybrid misinformation detection and security defense prototype that combines transparent rule-based logic with machine learning-assisted text classification.
+
+## Future Work
+
+The current prototype demonstrates the feasibility of hybrid rule-based and machine learning approaches for misinformation detection. Future improvements may include:
+
+- Expanding the training dataset with real-world misinformation corpora
+- Integrating transformer-based NLP models such as BERT or RoBERTa
+- Implementing automated feature importance explanations
+- Adding credibility scoring for external sources
+- Building a browser extension for real-time misinformation detection
+- Deploying the system as a scalable cloud service
+- Enhancing multilingual misinformation detection capabilities
 
 ## Status
 
