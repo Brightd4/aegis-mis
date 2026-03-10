@@ -14,11 +14,11 @@
 - Model training pipeline
 ## Web Interface
 
-![Web Interface](screenshots_web_interface.png)
+![Web Interface](screenshots/web_interface.png)
 
 ## Example Analysis Result
 
-![Analysis Result](screenshots_analysis_result.png)S
+![Analysis Result](screenshots/analysis_result.png)
 
 ## Project Structure
 
