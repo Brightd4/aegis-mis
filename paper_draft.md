@@ -133,6 +133,10 @@ The baseline classifier achieved the following results on the current evaluation
 - Recall: 1.000
 - F1-score: 1.000
 
+![AEGIS-MIS Confusion Matrix](exhibits/confusion_matrix.png)
+
+Figure 2: Confusion matrix of the AEGIS-MIS baseline classifier on the current test split. The classifier correctly separated reliable information from misinformation across all evaluation examples in the present prototype dataset.
+The confusion matrix confirms that the classifier produced no false positives and no false negatives on the current evaluation split.
 These results show that the classifier was able to perfectly separate the current synthetic test examples. This suggests that the hybrid prototype successfully captures the dominant patterns encoded in the current dataset.
 
 However, these results should be interpreted with caution. Because the dataset is synthetic and template-based, the perfect performance likely reflects the structured regularity of the generated examples. Real-world misinformation is noisier, more ambiguous, and often stylistically diverse. Therefore, the present results should be understood as a feasibility demonstration rather than a final claim of real-world effectiveness.
