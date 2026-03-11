@@ -183,8 +183,16 @@ Experimental results on a balanced synthetic dataset showed perfect baseline per
 
 # References
 
-1. Shu, K., Sliva, A., Wang, S., Tang, J., & Liu, H. Fake news detection on social media: A data mining perspective.  
-2. Devlin, J., Chang, M. W., Lee, K., & Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding.  
-3. Pedregosa, F., et al. Scikit-learn: Machine learning in Python.  
-4. Ribeiro, M. T., Singh, S., & Guestrin, C. “Why Should I Trust You?” Explaining the predictions of any classifier.  
-5. Vaswani, A., et al. Attention is all you need.
+## References
+
+1. K. Shu, A. Sliva, S. Wang, J. Tang, and H. Liu, “Fake News Detection on Social Media: A Data Mining Perspective,” *SIGKDD Explorations*, vol. 19, no. 1, pp. 22–36, 2017.
+
+2. K. Sharma, F. Qian, H. Jiang, N. Ruchansky, M. Zhang, and Y. Liu, “Combating Fake News: A Survey on Identification and Mitigation Techniques,” *ACM Transactions on Intelligent Systems and Technology*, vol. 10, no. 3, pp. 1–42, 2019.
+
+3. J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,” in *Proceedings of NAACL-HLT*, 2019.
+
+4. F. Pedregosa et al., “Scikit-learn: Machine Learning in Python,” *Journal of Machine Learning Research*, vol. 12, pp. 2825–2830, 2011.
+
+5. M. T. Ribeiro, S. Singh, and C. Guestrin, “Why Should I Trust You?: Explaining the Predictions of Any Classifier,” in *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 2016, pp. 1135–1144.
+
+6. A. Vaswani et al., “Attention Is All You Need,” in *Advances in Neural Information Processing Systems 30 (NeurIPS 2017)*, 2017.
