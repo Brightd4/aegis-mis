@@ -36,7 +36,9 @@ The present work positions itself as a lightweight hybrid prototype rather than 
 ## 3. Methodology
 
 ### 3.1 System Overview
+![AEGIS-MIS System Architecture](exhibits/system_architecture.png)
 
+Figure 1: Architecture of the AEGIS-MIS hybrid misinformation detection system. The system combines rule-based detection, machine learning classification, hybrid scoring, and explainability modules accessible through both a Flask web interface and a REST API.
 AEGIS-MIS is composed of the following major components:
 
 - Flask Web Interface
@@ -83,6 +85,26 @@ This design helps users understand which features influenced the decision and su
 ### 4.1 Dataset
 
 For the prototype evaluation, a balanced synthetic dataset of 500 labeled text samples was generated. The dataset included examples related to political conspiracy framing, alien/UFO narratives, anti-Muslim misinformation narratives, anti-LGBTQ misinformation narratives, and health misinformation patterns, alongside reliable informational examples across similar topics.
+#### Dataset Statistics
+
+The dataset used in this prototype experiment contains 500 labeled examples balanced between misinformation and reliable information.
+
+| Class | Label | Number of Samples |
+|------|------|------------------|
+| Reliable Information | 0 | 250 |
+| Misinformation | 1 | 250 |
+| **Total** | — | **500** |
+
+The dataset includes examples across multiple thematic categories to simulate diverse misinformation narratives, including:
+
+- political conspiracy framing
+- alien/UFO narratives
+- health misinformation
+- anti-Muslim conspiracy narratives
+- anti-LGBTQ conspiracy narratives
+- general misinformation patterns
+
+Reliable examples were constructed to resemble fact-based informational statements across the same domains in order to provide balanced training data for the classifier.
 
 The class distribution was:
 
