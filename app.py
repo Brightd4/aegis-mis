@@ -3,6 +3,7 @@ from src.detector import MisinformationDetector
 from src.explainer import ExplainabilityEngine
 from src.ml_detector import AIMisinformationDetector
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -107,15 +108,15 @@ def index():
         ai_confidence=ai_confidence
     )
 
+
 @app.route("/api/analyze", methods=["POST"])
 def api_analyze():
-
     data = request.get_json()
 
     if not data or "text" not in data:
         return jsonify({"error": "Missing 'text' field"}), 400
 
-    user_text = data["text"]
+    user_text = data["text"].strip()
 
     result = detector.analyze(user_text)
     ai_result = ai_detector.predict(user_text)
@@ -131,5 +132,8 @@ def api_analyze():
         "ai_label": ai_result["ai_label"],
         "ai_confidence": round(ai_result["ai_confidence"], 3)
     })
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
