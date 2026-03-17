@@ -11,6 +11,14 @@
 
 ---
 
+# 🌐 Live Demo
+
+Access the deployed system here:
+
+👉 https://aegis-mis.onrender.com
+
+---
+
 # Abstract
 
 AEGIS-MIS (Automated Explainable Guard for Information Security – Misinformation Identification System) is a hybrid misinformation detection prototype designed to identify potentially deceptive or manipulative textual content.
@@ -66,110 +74,3 @@ AEGIS-MIS
 ├── requirements.txt
 ├── README.md
 └── .gitignore
-```
-
----
-
-# Installation
-
-```bash
-python -m venv .venv
-.venv\Scripts\activate
-python -m pip install -r requirements.txt
-```
-
----
-
-# Train the Model
-
-```bash
-python train_model.py
-```
-
----
-
-# Run the Web App
-
-```bash
-python app.py
-```
-
-Then open:
-
-```
-http://127.0.0.1:5000
-```
-
----
-
-# API Usage
-
-Endpoint:
-
-```
-POST /api/analyze
-```
-
-Example PowerShell request:
-
-```powershell
-Invoke-RestMethod `
--Uri "http://127.0.0.1:5000/api/analyze" `
--Method Post `
--ContentType "application/json" `
--Body '{"text":"This is a secret cure they do not want you to know."}'
-```
-
----
-
-# Current Evaluation
-
-Using the current prototype dataset and a stratified train/test split, the baseline Logistic Regression + TF-IDF classifier achieved:
-
-- Accuracy: 1.000
-- Precision: 1.000
-- Recall: 1.000
-- F1 Score: 1.000
-
-### Important Note
-
-These results were obtained on a small synthetic prototype dataset and should be interpreted as an early validation signal rather than final real-world performance. Broader evaluation on larger and more diverse datasets is planned.
-
----
-
-# Documentation
-
-Additional project documentation:
-
-- **Project Summary:** [project_summary.md](project_summary.md)
-- **System Architecture:** [architecture.md](architecture.md)
-- **Evaluation Results:** [evaluation_results.md](evaluation_results.md)
-- **System Overview:** [system_overview.md](system_overview.md)
-
-These documents describe the system design, experimental results, and overall project objectives for AEGIS-MIS.
-
----
-
-# Purpose
-
-AEGIS-MIS is a hybrid misinformation detection and security defense prototype that combines transparent rule-based logic with machine learning-assisted text classification.
-
----
-
-# Future Work
-
-The current prototype demonstrates the feasibility of hybrid rule-based and machine learning approaches for misinformation detection. Future improvements may include:
-
-- Expanding the training dataset with real-world misinformation corpora
-- Integrating transformer-based NLP models such as BERT or RoBERTa
-- Implementing automated feature importance explanations
-- Adding credibility scoring for external sources
-- Building a browser extension for real-time misinformation detection
-- Deploying the system as a scalable cloud service
-- Enhancing multilingual misinformation detection capabilities
-
----
-
-# Status
-
-Prototype under active development.
