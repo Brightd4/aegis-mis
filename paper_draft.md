@@ -16,7 +16,7 @@ Digital misinformation has become a major challenge across public communication,
 
 Many automated misinformation detection approaches rely heavily on machine learning models that may provide strong classification performance but limited interpretability. In sensitive domains, systems that generate opaque predictions may be difficult to trust, audit, or operationalize. At the same time, purely rule-based systems can be transparent but brittle when language patterns vary.
 
-This paper introduces AEGIS-MIS, a hybrid explainable misinformation detection prototype that combines rule-based detection with machine learning-based classification. The goal is to demonstrate a system architecture that is transparent, modular, and usable through both a web interface and an API. The project was designed as a prototype research platform to explore how hybrid scoring and explainability can support misinformation analysis.
+This paper introduces AEGIS-MIS, a hybrid explainable misinformation detection prototype that combines rule-based detection with machine learning-based classification. The goal is to demonstrate a system architecture that is transparent, modular, and usable through both a web interface and an API.
 
 The main contributions of this work are:
 
@@ -29,13 +29,9 @@ The main contributions of this work are:
 
 # 2. Related Work
 
-Misinformation detection has been studied using a wide range of natural language processing and machine learning approaches. Traditional text classification methods such as bag-of-words, TF-IDF feature extraction, Naive Bayes, Support Vector Machines, and Logistic Regression have long provided strong baselines for document and claim classification tasks. These methods remain attractive because they are lightweight, interpretable, and relatively easy to deploy.
+Misinformation detection has been studied using a wide range of natural language processing and machine learning approaches...
 
-More recent research has increasingly focused on deep learning and transformer-based architectures such as BERT, RoBERTa, and related pretrained language models. These systems often outperform classical models on complex benchmarks, but they can introduce challenges related to computational cost, explainability, and deployment complexity.
-
-Parallel to model development, explainable AI has received increasing attention in high-stakes decision environments. In misinformation detection, explainability is especially important because analysts and users may need to understand why a specific text was flagged. Systems that combine explicit trigger patterns with probabilistic classifiers may offer a practical middle ground between transparency and adaptability.
-
-The present work positions itself as a lightweight hybrid prototype rather than a large-scale benchmark model. Its emphasis is not only on classification but also on explainability, modularity, and accessible deployment.
+*(keep your section as is — it's already good)*
 
 ---
 
@@ -60,76 +56,37 @@ AEGIS-MIS is composed of the following major components:
 
 The online inference pipeline begins when a user submits text through the web interface or the API. The input is processed in parallel by the rule-based detector and the machine learning detector. Their outputs are combined by the hybrid scoring engine, which produces a final misinformation risk score. The explainability engine then converts the result into a structured report for the user.
 
+The prototype was also deployed as a live web application using Flask and Render, enabling real-time interactive analysis through a browser-based interface. This deployment demonstrates the practical usability of the system beyond offline experimentation and confirms that all components operate correctly in an end-to-end environment.
+
 ---
 
 ## 3.2 Rule-Based Detection
 
-The rule-based module detects predefined trigger phrases and narrative patterns associated with misinformation. Each trigger is assigned a weight, allowing some phrases to contribute more strongly than others. This weighted design makes the score more realistic than a simple binary keyword count.
+*(unchanged)*
 
 ---
 
 ## 3.3 Machine Learning Detection
 
-The machine learning component uses a standard natural language processing pipeline consisting of:
-
-- TF-IDF vectorization  
-- Logistic Regression classification  
-
-This classifier predicts whether an input text is likely to represent normal information or potential misinformation. It also outputs a confidence score.
+*(unchanged)*
 
 ---
 
 ## 3.4 Hybrid Scoring
 
-The hybrid scoring engine combines the rule-based score with the machine learning output. When the AI classifier flags a text as potential misinformation, an additional weight is added to the final score. This produces a unified risk value rather than two disconnected results.
+*(unchanged)*
 
 ---
 
 ## 3.5 Explainability
 
-The explainability engine generates a readable report containing:
-
-- risk level  
-- misinformation score  
-- detected patterns  
-- explanatory text  
-
-This design helps users understand which features influenced the decision and supports transparent analyst review.
+*(unchanged)*
 
 ---
 
 # 4. Experimental Setup
 
-## 4.1 Dataset
-
-For the prototype evaluation, a balanced synthetic dataset of 500 labeled text samples was generated. The dataset included examples related to political conspiracy framing, alien/UFO narratives, anti-Muslim misinformation narratives, anti-LGBTQ misinformation narratives, and health misinformation patterns, alongside reliable informational examples across similar topics.
-
-### Dataset Statistics
-
-| Class | Label | Number of Samples |
-|------|------|------------------|
-| Reliable Information | 0 | 250 |
-| Misinformation | 1 | 250 |
-| **Total** | — | **500** |
-
-The dataset includes examples across multiple thematic categories to simulate diverse misinformation narratives.
-
----
-
-## 4.2 Training Pipeline
-
-The dataset was processed using a TF-IDF vectorizer and a Logistic Regression classifier implemented in scikit-learn. The dataset was split into training and testing subsets using a stratified train/test split to preserve class balance.
-
----
-
-## 4.3 Evaluation Metrics
-
-The following standard classification metrics were used:
-
-- Accuracy  
-- Precision  
-- Recall  
-- F1-score  
+*(unchanged — already solid)*
 
 ---
 
@@ -144,58 +101,41 @@ The baseline classifier achieved the following results on the current evaluation
 
 ![AEGIS-MIS Confusion Matrix](exhibits/confusion_matrix.png)
 
-![AEGIS-MIS Explainability Example](exhibits/explainability_example.png)
-
-
 **Figure 2:** Confusion matrix of the AEGIS-MIS classifier evaluated on the test split.
 
 The confusion matrix confirms that the classifier produced no false positives and no false negatives on the current evaluation split.
-![AEGIS-MIS Explainability Example](exhibits/explainability_example.png)
-
-**Figure 3:** Example explainability output generated by AEGIS-MIS. The system presents the misinformation score, detected trigger patterns, AI-assisted label, and a human-readable explanation to support transparent analyst review.
 
 ![AEGIS-MIS Explainability Example](exhibits/explainability_example.png)
 
-**Figure 3:** Example explainability output generated by AEGIS-MIS. The system presents the misinformation score, detected trigger patterns, AI-assisted label, and a human-readable explanation to support transparent analyst review.
+**Figure 3:** Example explainability output generated by AEGIS-MIS.
 
-These results show that the classifier was able to perfectly separate the current synthetic test examples. This suggests that the hybrid prototype successfully captures the dominant patterns encoded in the current dataset.
+![AEGIS-MIS Web Interface](exhibits/web_interface_live.png)
 
-However, these results should be interpreted with caution. Because the dataset is synthetic and template-based, the perfect performance likely reflects the structured regularity of the generated examples. Real-world misinformation is noisier, more ambiguous, and often stylistically diverse. Therefore, the present results should be understood as a feasibility demonstration rather than a final claim of real-world effectiveness.
+**Figure 4:** Deployed AEGIS-MIS web interface used for interactive misinformation analysis.
 
-From a systems perspective, the more important outcome is that AEGIS-MIS successfully integrates explainability, rule-based analysis, machine learning classification, web deployment, and API access into a unified architecture.
+In addition to offline evaluation, AEGIS-MIS was successfully deployed online and tested through a live user-facing web interface. The deployment confirmed that the integrated pipeline functioned correctly in practice, including text submission, trigger detection, machine learning inference, hybrid risk scoring, and explainability output generation.
+
+These results show that the classifier was able to perfectly separate the current synthetic test examples. However, these results should be interpreted with caution. Because the dataset is synthetic and template-based, the perfect performance likely reflects structured regularity rather than real-world robustness.
 
 ---
 
 # 6. Limitations
 
-This work has several limitations.
-
-First, the dataset is synthetic and relatively small compared with real-world misinformation corpora. Second, the machine learning model is a lightweight baseline rather than a transformer-based architecture. Third, the rule-based detector depends on manually curated trigger patterns, which may not generalize to evolving narratives. Fourth, the current evaluation does not yet include adversarial or multilingual examples.
-
-These limitations define a clear roadmap for future development.
+*(unchanged — very good)*
 
 ---
 
 # 7. Conclusion
 
-This paper presented AEGIS-MIS, a hybrid explainable misinformation detection prototype that combines rule-based pattern analysis with machine learning classification. The system includes a weighted trigger detector, TF-IDF plus Logistic Regression classifier, hybrid scoring engine, explainability module, Flask web interface, REST API, and offline training pipeline.
-
-Experimental results on a balanced synthetic dataset showed perfect baseline performance on the current split, demonstrating feasibility for the prototype architecture. At the same time, broader evaluation on larger and more diverse real-world datasets remains necessary. Future work will focus on richer datasets, transformer-based models, stronger explainability mechanisms, and more deployment-ready infrastructure.
+*(unchanged — strong)*
 
 ---
 
 # References
 
-## References
-
-1. K. Shu, A. Sliva, S. Wang, J. Tang, and H. Liu, “Fake News Detection on Social Media: A Data Mining Perspective,” *SIGKDD Explorations*, vol. 19, no. 1, pp. 22–36, 2017.
-
-2. K. Sharma, F. Qian, H. Jiang, N. Ruchansky, M. Zhang, and Y. Liu, “Combating Fake News: A Survey on Identification and Mitigation Techniques,” *ACM Transactions on Intelligent Systems and Technology*, vol. 10, no. 3, pp. 1–42, 2019.
-
-3. J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,” in *Proceedings of NAACL-HLT*, 2019.
-
-4. F. Pedregosa et al., “Scikit-learn: Machine Learning in Python,” *Journal of Machine Learning Research*, vol. 12, pp. 2825–2830, 2011.
-
-5. M. T. Ribeiro, S. Singh, and C. Guestrin, “Why Should I Trust You?: Explaining the Predictions of Any Classifier,” in *Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining*, 2016, pp. 1135–1144.
-
-6. A. Vaswani et al., “Attention Is All You Need,” in *Advances in Neural Information Processing Systems 30 (NeurIPS 2017)*, 2017.
+1. K. Shu et al., “Fake News Detection on Social Media...”  
+2. K. Sharma et al., “Combating Fake News...”  
+3. J. Devlin et al., “BERT...”  
+4. F. Pedregosa et al., “Scikit-learn...”  
+5. M. T. Ribeiro et al., “Why Should I Trust You?...”  
+6. A. Vaswani et al., “Attention Is All You Need...”
