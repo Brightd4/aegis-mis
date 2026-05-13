@@ -12,6 +12,7 @@
 The system is designed to address the growing challenge of misinformation by balancing performance with transparency.
 
 ---
+
 ## 🔍 Overview
 
 Misinformation spreads rapidly across digital platforms, making automated detection essential. However, many machine learning models operate as black boxes, limiting trust and interpretability.
@@ -23,6 +24,7 @@ AEGIS-MIS solves this by integrating:
 - Explainability mechanisms for transparency  
 
 ---
+
 ## ⚙️ Key Features
 
 - Hybrid detection (rule-based + machine learning)  
@@ -51,31 +53,40 @@ The system combines rule-based pattern detection with a machine learning classif
 To support transparency and interpretability, AEGIS-MIS includes an explainability module that highlights the triggers and model signals contributing to each decision. The system is deployed through a lightweight Flask web interface and REST API, enabling interactive analysis and integration with other security tools.
 
 ---
+
 ## 🧠 How It Works
 
 The system processes input text through two main components:
 
 ---
+
 ### 1. Rule-Based Engine
+
 Analyzes:
+
 - suspicious keywords  
 - misleading patterns  
 - exaggerated or sensational language  
 
 ---
+
 ### 2. Machine Learning Model
+
 - Converts text into TF-IDF features  
 - Uses Logistic Regression for classification
   
 ---
+
 ### Final Decision
+
 The outputs from both components are combined to produce:
+
 - Final classification (Real / Misinformation)  
-- Confidence score
-- Explanation of contributing factors
----
+- Confidence score  
+- Explanation of contributing factors  
 
 ---
+
 ## 🖥️ System Architecture
 
 The system consists of:
@@ -85,17 +96,45 @@ The system consists of:
 - Feature extraction (TF-IDF)  
 - Machine learning classifier  
 - Explainability module  
-- Flask web application
+- Flask web application  
 
----  
+---
+
+# Dataset
+
+AEGIS-MIS uses two categories of datasets:
+
+1. Synthetic prototype validation dataset
+2. Benchmark misinformation dataset derived from the LIAR dataset
+
+The synthetic dataset was used to validate the hybrid explainable architecture in a controlled experimental setting.
+
+The benchmark evaluation was conducted using misinformation data derived from the LIAR dataset.
+
+Dataset source:
+
+https://www.cs.ucsb.edu/~william/data/liar_dataset.zip
+
+The dataset preprocessing pipeline included:
+
+- Text normalization
+- Lowercasing
+- Label simplification
+- TF-IDF feature extraction
+
+The processed data was used to train the lightweight Logistic Regression misinformation classifier integrated into the AEGIS-MIS framework.
+
+The machine learning pipeline generated serialized model artifacts used during real time inference and deployment.
+
+---
+
 # Web Interface
 
 ![Web Interface](screenshots/web_interface.png)
 
 ---
-# 📊 Example Analysis Result 
 
-Input:
+# 📊 Example Analysis Result
 
 ![Analysis Result](screenshots/analysis_result.png)
 
@@ -119,5 +158,6 @@ AEGIS-MIS
 ├── app.py
 ├── train_model.py
 ├── requirements.txt
+├── Procfile
 ├── README.md
 └── .gitignore
