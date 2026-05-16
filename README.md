@@ -311,6 +311,13 @@ Potential future improvements include:
 - Explainable AI visualization improvements
 
 ---
+## DOI
+
+The archived AEGIS MIS software release is available on Zenodo:
+
+https://doi.org/10.5281/zenodo.20161662
+
+---
 
 ## Citation
 
