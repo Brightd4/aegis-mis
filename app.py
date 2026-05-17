@@ -7,6 +7,7 @@ import os
 
 app = Flask(__name__)
 
+# Initialize components
 detector = MisinformationDetector()
 explainer = ExplainabilityEngine()
 ai_detector = AIMisinformationDetector()
@@ -16,6 +17,7 @@ HTML_TEMPLATE = """
 <html>
 <head>
     <title>AEGIS-MIS</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -126,69 +128,105 @@ HTML_TEMPLATE = """
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>AEGIS-MIS</h1>
-        <p class="subtitle">
-            Automated Explainable Guard for Information Security – Misinformation Identification System
-        </p>
 
-        <form method="POST">
-            <textarea name="text" placeholder="Paste text to analyze..."></textarea>
-            <br>
-            <button type="submit">Analyze Text</button>
-        </form>
+<div class="container">
 
-        {% if report %}
-        <div class="result">
-            <div class="badge {{ risk_class }}">{{ risk_level }} Risk</div>
+    <h1>AEGIS-MIS</h1>
 
-            <div class="card">
-                <div class="label">Analysis Report</div>
-                <div class="mono">{{ report }}</div>
+    <p class="subtitle">
+        Automated Explainable Guard for Information Security – Misinformation Identification System
+    </p>
+
+    <form method="POST">
+
+        <textarea
+            name="text"
+            placeholder="Paste text to analyze..."
+        ></textarea>
+
+        <br>
+
+        <button type="submit">
+            Analyze Text
+        </button>
+
+    </form>
+
+    {% if report %}
+
+    <div class="result">
+
+        <div class="badge {{ risk_class }}">
+            {{ risk_level }} Risk
+        </div>
+
+        <div class="card">
+
+            <div class="label">
+                Analysis Report
             </div>
-        </div>
-        {% endif %}
 
-        <div class="footer">
-            AEGIS-MIS prototype — hybrid rule-based and machine learning misinformation analysis.
+            <div class="mono">
+                {{ report }}
+            </div>
+
         </div>
+
     </div>
+
+    {% endif %}
+
+    <div class="footer">
+        AEGIS-MIS prototype — hybrid rule-based and machine learning misinformation analysis.
+    </div>
+
+</div>
+
 </body>
 </html>
 """
 
 
-def apply_hybrid_scoring(result: dict, ai_result: dict) -> dict:
-    """
-    Combine rule-based score with AI model signal.
-    """
+def apply_hybrid_scoring(result, ai_result):
+
     final_score = result["misinformation_score"]
 
     if ai_result["ai_flag"]:
+
         final_score += 2
+
         if "AI_MODEL_FLAG" not in result["triggers_found"]:
             result["triggers_found"].append("AI_MODEL_FLAG")
+
     elif ai_result["ai_confidence"] >= 0.45:
+
         final_score += 1
+
         if "AI_SUSPICION_SIGNAL" not in result["triggers_found"]:
             result["triggers_found"].append("AI_SUSPICION_SIGNAL")
 
     result["misinformation_score"] = final_score
+
     return result
 
 
-def map_risk_level(score: int):
+def map_risk_level(score):
+
     if score >= 4:
         return "High", "high"
+
     elif score >= 2:
         return "Medium", "medium"
+
     else:
         return "Low", "low"
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+
     report = None
     ai_label = None
     ai_confidence = None
@@ -196,16 +234,26 @@ def index():
     risk_class = None
 
     if request.method == "POST":
-        user_text = request.form["text"].strip()
+
+        user_text = request.form.get("text", "").strip()
 
         if user_text:
+
             result = detector.analyze(user_text)
+
             ai_result = ai_detector.predict(user_text)
 
             ai_label = ai_result["ai_label"]
-            ai_confidence = round(ai_result["ai_confidence"], 3)
 
-            result = apply_hybrid_scoring(result, ai_result)
+            ai_confidence = round(
+                ai_result["ai_confidence"],
+                3
+            )
+
+            result = apply_hybrid_scoring(
+                result,
+                ai_result
+            )
 
             report = explainer.generate_report(
                 result["misinformation_score"],
@@ -214,9 +262,16 @@ def index():
                 ai_confidence
             )
 
-            risk_level, risk_class = map_risk_level(result["misinformation_score"])
+            risk_level, risk_class = map_risk_level(
+                result["misinformation_score"]
+            )
 
-            with open("analysis_log.txt", "a", encoding="utf-8") as log:
+            with open(
+                "analysis_log.txt",
+                "a",
+                encoding="utf-8"
+            ) as log:
+
                 log.write(
                     f"{datetime.now()} | "
                     f"Score:{result['misinformation_score']} | "
@@ -238,21 +293,35 @@ def index():
 
 @app.route("/api/analyze", methods=["POST"])
 def api_analyze():
+
     data = request.get_json()
 
     if not data or "text" not in data:
-        return jsonify({"error": "Missing 'text' field"}), 400
+
+        return jsonify({
+            "error": "Missing 'text' field"
+        }), 400
 
     user_text = data["text"].strip()
 
     if not user_text:
-        return jsonify({"error": "Text cannot be empty"}), 400
+
+        return jsonify({
+            "error": "Text cannot be empty"
+        }), 400
 
     result = detector.analyze(user_text)
+
     ai_result = ai_detector.predict(user_text)
 
-    result = apply_hybrid_scoring(result, ai_result)
-    risk_level, _ = map_risk_level(result["misinformation_score"])
+    result = apply_hybrid_scoring(
+        result,
+        ai_result
+    )
+
+    risk_level, _ = map_risk_level(
+        result["misinformation_score"]
+    )
 
     report = explainer.generate_report(
         result["misinformation_score"],
@@ -262,16 +331,35 @@ def api_analyze():
     )
 
     return jsonify({
+
         "text": user_text,
+
         "risk_level": risk_level,
-        "misinformation_score": result["misinformation_score"],
-        "triggers_found": result["triggers_found"],
-        "ai_label": ai_result["ai_label"],
-        "ai_confidence": round(ai_result["ai_confidence"], 3),
-        "report": report
+
+        "misinformation_score":
+            result["misinformation_score"],
+
+        "triggers_found":
+            result["triggers_found"],
+
+        "ai_label":
+            ai_result["ai_label"],
+
+        "ai_confidence":
+            round(ai_result["ai_confidence"], 3),
+
+        "report":
+            report
     })
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+
+    port = int(
+        os.environ.get("PORT", 5000)
+    )
+
+    app.run(
+        host="0.0.0.0",
+        port=port
+    )
